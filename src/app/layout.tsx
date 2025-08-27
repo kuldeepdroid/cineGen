@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Nunito } from "next/font/google";
 import "./globals.css";
-import Provider from "@/components/provider";
-import Appbar from "@/components/appbar";
+import Provider from "@/app/components/provider";
+import Appbar from "@/app/components/appbar";
+import { Toaster } from "react-hot-toast";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -11,6 +12,10 @@ const geistSans = Geist({
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
+const nunito = Nunito({
   subsets: ["latin"],
 });
 
@@ -26,13 +31,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={`${nunito.className}`}>
         <Provider>
-          <div className="w-full h-screen">
-            <Appbar />
-            <div className="h-[80%]">{children}</div>
+          <Toaster position="top-right" reverseOrder={false} />
+          <div className="w-full bg-zinc-200 h-screen">
+            <div className=" ">
+              <Appbar />
+            </div>
+            <div className=" flex w-full">
+              <div className="w-full h-full"> {children}</div>
+            </div>
           </div>
         </Provider>
       </body>
