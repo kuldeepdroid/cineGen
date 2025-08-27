@@ -15,10 +15,8 @@ datasource db {
 }
 
 model user {
-  id           Int      @id @unique @default(autoincrement())
-  name         String
+  id           String   @id @unique
   username     String   @unique
-  password     String
   subscription Boolean?
-  imageUrl     String
+  imageUrl     String?
 }

@@ -14,11 +14,9 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model user{
-  id Int @unique @id @default(autoincrement())
-  name String
-  username String @unique
-  password String 
-  subscription Boolean? 
-  imageUrl String?
+model user {
+  id           String   @id @unique
+  username     String   @unique
+  subscription Boolean?
+  imageUrl     String?
 }

@@ -3,33 +3,30 @@ import prisma from "@/app/lib/prisma";
 
 interface ReqBody {
   username: string;
-  password: string;
-  name: string;
+  ImageUrl: string;
+  userId: string;
 }
 
-export const authSignup = async (req: ReqBody) => {
-  const { username, password, name } = req;
+export const registerUser = async (req: ReqBody) => {
+  const { username, ImageUrl, userId } = req;
   try {
     const isExistingUser = await prisma.user.findUnique({
-      where: {
-        username,
-      },
+      where: { username: username },
     });
-    if (isExistingUser) {
-      return { error: "User already exists" };
-    }
+    if (isExistingUser) throw new Error("User already exists");
     const user = await prisma.user.create({
       data: {
-        username,
-        name,
-        password,
+        username: username as string,
+        imageUrl: ImageUrl as string,
+        id: userId as string,
       },
     });
-    if (!user) {
-      return { error: "Something went wrong while registation" };
+    if (user) {
+      return user;
+    } else {
+      return { message: "Failed to create user" };
     }
-    return { message: "User created successfully", id: user.id };
-  } catch (error) {
-    return { error: "Something went wrong" };
+  } catch (e) {
+    return { message: "Some error occurred" };
   }
 };
