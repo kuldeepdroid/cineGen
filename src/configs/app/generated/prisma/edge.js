@@ -129,7 +129,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "/Users/singsys/Desktop/cineGen/src/configs/app/generated/prisma",
+      "value": "C:\\Users\\Deepanshudks\\OneDrive\\Desktop\\video-generator\\src\\configs\\app\\generated\\prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -138,12 +138,12 @@ const config = {
     "binaryTargets": [
       {
         "fromEnvVar": null,
-        "value": "darwin",
+        "value": "windows",
         "native": true
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "/Users/singsys/Desktop/cineGen/src/configs/prisma/schema.prisma",
+    "sourceFilePath": "C:\\Users\\Deepanshudks\\OneDrive\\Desktop\\video-generator\\src\\configs\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
@@ -156,6 +156,7 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
+  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {

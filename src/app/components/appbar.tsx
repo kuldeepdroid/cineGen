@@ -1,20 +1,19 @@
 "use client";
-import React, { useEffect } from "react";
-// import { signIn, signOut, useSession } from "next-auth/react";
+import React, { useEffect, useState } from "react";
 import logoImage from "../../../public/cineGen.png";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { SignOutButton, useUser } from "@clerk/nextjs";
+import { SignOutButton, UserButton, useUser } from "@clerk/nextjs";
 import { Avatar, LinearProgress } from "@mui/material";
 
-const Appbar = () => {
+const Header = () => {
   const router = useRouter();
-  const user = useUser();
-  const [isWaiting, setIsWaiting] = React.useState(true);
+  const { user, isSignedIn, isLoaded } = useUser();
+  const [isWaiting, setIsWaiting] = useState(false);
 
   useEffect(() => {
-    user && setIsWaiting(false);
-  }, [user]);
+    setIsWaiting(!isLoaded);
+  }, [isLoaded]);
   return (
     <>
       <div className=" p-2 shadow-lg bg-zinc-300 h-full items-center w-full flex justify-between">
@@ -27,18 +26,8 @@ const Appbar = () => {
             alt="CineGen Logo"
           />
         </div>
-        <div className="flex gap-2">
-          {!user.isSignedIn ? (
-            <button
-              onClick={() => {
-                setIsWaiting(true);
-                router.push("/api/auth/signin");
-              }}
-              className="bg-gradient-to-br from-[#4a4b52] tracking-wide via-[#7c7f8b] to-[#1f2024] text-white md:text-base text-base  cursor-pointer  hover:text-zinc-200 md:px-4 px-2 py-1 rounded-md"
-            >
-              Sign In
-            </button>
-          ) : (
+        <div className="flex gap-4">
+          {!isSignedIn && (
             <div
               onClick={() => {
                 setIsWaiting(true);
@@ -48,9 +37,7 @@ const Appbar = () => {
               <SignOutButton />
             </div>
           )}
-          <Avatar className="uppercase">
-            {user.user?.username?.charAt(0)}
-          </Avatar>
+          <UserButton />
         </div>
       </div>
       {isWaiting && <LinearProgress />}
@@ -58,4 +45,4 @@ const Appbar = () => {
   );
 };
 
-export default Appbar;
+export default Header;
