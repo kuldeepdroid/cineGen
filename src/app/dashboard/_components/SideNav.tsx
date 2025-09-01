@@ -1,39 +1,54 @@
-import { Dashboard } from "@mui/icons-material";
+"use client";
+import {
+  AccountCircle,
+  AccountCircleOutlined,
+  AddOutlined,
+  Dashboard,
+  DashboardOutlined,
+  TrendingUpOutlined,
+} from "@mui/icons-material";
+import Link from "next/link";
+import { usePathname, useSearchParams } from "next/navigation";
 import React from "react";
 
 const SideNav = () => {
+  const pathname = usePathname();
   const menuOptions = [
     {
       name: "Dashboard",
       link: "/dashboard",
-      icon: <Dashboard />,
+      icon: <DashboardOutlined />,
     },
     {
-      name: "Dashboard",
-      link: "/dashboard",
-      icon: <Dashboard />,
+      name: "Create New",
+      link: "/create-new",
+      icon: <AddOutlined />,
     },
     {
-      name: "Dashboard",
-      link: "/dashboard",
-      icon: <Dashboard />,
+      name: "Upgrade",
+      link: "/upgrade",
+      icon: <TrendingUpOutlined />,
     },
     {
-      name: "Dashboard",
-      link: "/dashboard",
-      icon: <Dashboard />,
+      name: "Account",
+      link: "/user",
+      icon: <AccountCircleOutlined />,
     },
   ];
   return (
-    <div className="w-64 flex-col h-screen shadow-md flex p-5">
+    <div className="w-64 flex-col h-screen shadow-md flex gap-3 p-5">
       {menuOptions?.map((option, idx) => (
-        <div
-          key={idx}
-          className="flex items-center gap-3 p-4  hover:bg-gray-100 rounded-md cursor-pointer"
-        >
-          <div>{option.icon}</div>
-          <div>{option.name}</div>
-        </div>
+        <Link href={option.link} key={idx}>
+          <div
+            key={idx}
+            className={`flex items-center gap-2 p-4   rounded-md hover:bg-primary hover:text-white cursor-pointer ${
+              pathname === option.link ? "bg-primary text-white" : ""
+            }`}
+          >
+            <div>{option.icon}</div>
+            <div>{option.name}</div>
+          </div>
+        </Link>
       ))}
     </div>
   );
