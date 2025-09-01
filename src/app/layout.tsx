@@ -4,6 +4,7 @@ import "./globals.css";
 import Provider from "@/app/components/provider";
 import Appbar from "@/app/components/appbar";
 import { Toaster } from "react-hot-toast";
+import { ClerkProvider } from "@clerk/nextjs";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,20 +31,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${nunito.className}`}>
-        <Provider>
-          <Toaster position="top-right" reverseOrder={false} />
-          <div className="w-full bg-zinc-200 h-screen">
-            <div className=" ">
-              <Appbar />
-            </div>
-            <div className=" flex w-full">
-              <div className="w-full h-full"> {children}</div>
-            </div>
-          </div>
-        </Provider>
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="en">
+        <body className={`${nunito.className}`}>
+          <Provider>
+            <Toaster position="top-right" reverseOrder={false} />
+            <div>{children}</div>
+          </Provider>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }

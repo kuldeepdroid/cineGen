@@ -9,6 +9,7 @@ import {
   UserButton,
   useUser,
 } from "@clerk/nextjs";
+
 import { Avatar, LinearProgress } from "@mui/material";
 
 const Header = () => {
@@ -20,7 +21,6 @@ const Header = () => {
     setIsWaiting(!isLoaded);
   }, [isLoaded]);
 
-  console.log(isSignedIn, user);
   return (
     <>
       <div className=" p-2 shadow-lg bg-zinc-300 h-full items-center w-full flex justify-between">
@@ -44,6 +44,7 @@ const Header = () => {
               <SignOutButton />
             </div>
           ) : (
+
             <div
               onClick={() => {
                 setIsWaiting(true);
