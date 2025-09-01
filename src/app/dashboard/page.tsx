@@ -1,37 +1,29 @@
 "use client";
-import { useUser } from "@clerk/nextjs";
-import { getServerSession } from "next-auth";
-import React, { useEffect, useState } from "react";
-import toast from "react-hot-toast";
+import { Button } from "@mui/material";
+import React, { useState } from "react";
+import { EmptyState } from "../components/EmptyState";
+import Link from "next/link";
 
 const page = () => {
-  const [isWaiting, setIsWaiting] = useState(false);
-  const { user } = useUser();
-
-  const isNewUser = async () => {
-    setIsWaiting(true);
-    const response = await fetch("/api/user", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        username: user?.username,
-        id: user?.id,
-      }),
-    });
-    if (response.status === 202) {
-      toast.success("User Created Successfully");
-    }
-    setIsWaiting(false);
-  };
-
-  useEffect(() => {
-    user && isNewUser();
-  }, [user]);
+  const [videoList, setVideoList] = useState([]);
   return (
-    <div className="flex text-center justify-center flex-col gap-4 items-center ">
-      {isWaiting && <h4>Loading...</h4>}
-      <p>{user && <>Hello {user.username}</>}</p>
-    </div>
+    <>
+      <div className="flex justify-between items-center ">
+        <h2 className="font-bold text-primary text-xl">Dashboard</h2>
+        <Link href="/dashboard/create">
+          <Button className="!bg-primary !text-white">
+            Create New Short Video
+          </Button>
+        </Link>
+      </div>
+      <div>
+        {videoList.length === 0 && (
+          <div>
+            <EmptyState />
+          </div>
+        )}
+      </div>
+    </>
   );
 };
 

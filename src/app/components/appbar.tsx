@@ -3,7 +3,13 @@ import React, { useEffect, useState } from "react";
 import logoImage from "../../../public/cineGen.png";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { SignOutButton, UserButton, useUser } from "@clerk/nextjs";
+import {
+  SignInButton,
+  SignOutButton,
+  UserButton,
+  useUser,
+} from "@clerk/nextjs";
+
 import { Avatar, LinearProgress } from "@mui/material";
 
 const Header = () => {
@@ -14,6 +20,7 @@ const Header = () => {
   useEffect(() => {
     setIsWaiting(!isLoaded);
   }, [isLoaded]);
+
   return (
     <>
       <div className=" p-2 shadow-lg bg-zinc-300 h-full items-center w-full flex justify-between">
@@ -27,14 +34,25 @@ const Header = () => {
           />
         </div>
         <div className="flex gap-4">
-          {!isSignedIn && (
+          {isSignedIn ? (
             <div
               onClick={() => {
                 setIsWaiting(true);
               }}
-              className="bg-gradient-to-br from-[#4a4b52] tracking-wide via-[#656a87] to-[#777a87] text-white md:text-lg text-base  cursor-pointer  hover:text-zinc-200 md:px-4 px-2 py-1 rounded-md"
+              className="bg-primary text-white md:text-md text-base  cursor-pointer  hover:text-zinc-200 md:px-4 p-2 rounded-md"
             >
               <SignOutButton />
+            </div>
+          ) : (
+
+            <div
+              onClick={() => {
+                setIsWaiting(true);
+                router.push("/signin");
+              }}
+              className="bg-primary text-white md:text-md text-base  cursor-pointer  hover:text-zinc-200 md:px-4 p-2 rounded-md"
+            >
+              <SignInButton />
             </div>
           )}
           <UserButton />

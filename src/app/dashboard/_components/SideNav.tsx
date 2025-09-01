@@ -1,5 +1,6 @@
 "use client";
 import {
+
   AccountCircle,
   AccountCircleOutlined,
   AddOutlined,
@@ -13,6 +14,7 @@ import React from "react";
 
 const SideNav = () => {
   const pathname = usePathname();
+  
   const menuOptions = [
     {
       name: "Dashboard",
@@ -20,8 +22,8 @@ const SideNav = () => {
       icon: <DashboardOutlined />,
     },
     {
-      name: "Create New",
-      link: "/create-new",
+      name: "Create New ",
+      link: "/dashboard/create",
       icon: <AddOutlined />,
     },
     {
@@ -35,6 +37,7 @@ const SideNav = () => {
       icon: <AccountCircleOutlined />,
     },
   ];
+  
   return (
     <div className="w-64 flex-col h-screen shadow-md flex gap-3 p-5">
       {menuOptions?.map((option, idx) => (

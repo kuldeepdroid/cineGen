@@ -12,8 +12,10 @@ export default function DashbooardLayout({
         <SideNav />
       </div>
       <div>
-        <Header />
-        {children}
+        <div>
+          <Header />
+        </div>
+        <div className="ml-64 p-6">{children}</div>
       </div>
     </div>
   );
