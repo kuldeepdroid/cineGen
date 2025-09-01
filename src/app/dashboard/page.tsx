@@ -1,11 +1,30 @@
 "use client";
-import { useUser } from "@clerk/nextjs";
-import { getServerSession } from "next-auth";
-import React from "react";
+import { Button } from "@mui/material";
+import React, { useState } from "react";
+import { EmptyState } from "../components/EmptyState";
+import Link from "next/link";
 
 const page = () => {
-  const session = useUser();
-  return <div>{session && <>Hello {session.user?.username}</>}</div>;
+  const [videoList, setVideoList] = useState([]);
+  return (
+    <>
+      <div className="flex justify-between items-center ">
+        <h2 className="font-bold text-primary text-xl">Dashboard</h2>
+        <Link href="/dashboard/create">
+          <Button className="!bg-primary !text-white">
+            Create New Short Video
+          </Button>
+        </Link>
+      </div>
+      <div>
+        {videoList.length === 0 && (
+          <div>
+            <EmptyState />
+          </div>
+        )}
+      </div>
+    </>
+  );
 };
 
 export default page;
