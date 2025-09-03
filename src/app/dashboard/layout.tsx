@@ -8,14 +8,14 @@ export default function DashbooardLayout({
 }) {
   return (
     <div>
-      <div className="md:block  w-64 h-screen hidden fixed mt-[54px]">
+      <div className="md:block w-64 h-screen hidden fixed mt-[54px]">
         <SideNav />
       </div>
       <div>
         <div>
           <Header />
         </div>
-        <div className="ml-64 p-6">{children}</div>
+        <div className="md:ml-64 p-6">{children}</div>
       </div>
     </div>
   );

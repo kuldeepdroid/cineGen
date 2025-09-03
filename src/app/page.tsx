@@ -3,97 +3,138 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import heroImg from "@/public/cineGen.png";
 import { Button, Card, CardContent } from "@mui/material";
+import { motion } from "framer-motion";
 
 export default function LandingPage() {
   const router = useRouter();
 
+  const whyCineGen = [
+    {
+      title: "Seamless Video Production",
+      desc: "Craft professional short videos effortlessly with our intuitive, AI-powered platform.",
+      icon: "🎬",
+    },
+    {
+      title: "Robust & Scalable",
+      desc: "Leverage advanced cloud infrastructure for fast, scalable video rendering.",
+      icon: "☁️",
+    },
+    {
+      title: "Customizable Video Creation",
+      desc: "Create tailored short videos using curated categories or custom prompts.",
+      icon: "✨",
+    },
+  ];
+
   return (
-    <main className="flex flex-col min-h-screen font-sans bg-gray-50">
+    <main className="flex flex-col min-h-screen font-sans bg-gray-100">
       {/* Hero Section */}
-      <section className="bg-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 flex flex-col lg:flex-row items-center justify-between gap-8">
-          <div className="max-w-lg text-center lg:text-left">
-            <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-gray-900">
+      <section className="relative bg-gradient-to-r from-blue-600 to-indigo-700 text-white overflow-hidden">
+        <div className="absolute inset-0 bg-black/20 z-0" />
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-32 flex flex-col lg:flex-row items-center justify-between gap-12 relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="max-w-lg text-center lg:text-left"
+          >
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight">
               CineGen
             </h1>
-            <p className="mt-4 text-base sm:text-lg text-gray-500 leading-relaxed">
-              Transform your ideas into professional short videos —
-              effortlessly, quickly, and reliably.
+            <p className="mt-4 text-lg sm:text-xl text-gray-200 leading-relaxed">
+              Transform your ideas into stunning short videos effortlessly,
+              quickly, and professionally.
             </p>
-            <div className="mt-6 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <Button
-                size="large"
-                className="bg-blue-600 text-white font-semibold rounded-md px-6 py-2 hover:bg-blue-700 transition-colors"
+            <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+              <button
+                className="bg-gray-900  font-semibold !rounded-full px-8 py-3 hover:bg-gray-100 hover:shadow-lg transition-all duration-300 text-zinc-50 hover:text-black"
                 onClick={() => router.push("/api/auth/signin")}
               >
                 Get Started
-              </Button>
+              </button>
             </div>
-          </div>
-          <div className="mt-8 lg:mt-0">
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="mt-12 lg:mt-0"
+          >
             <Image
               src={heroImg}
               alt="CineGen Preview"
-              width={480}
-              height={320}
-              className="rounded-lg shadow-md w-full max-w-md mx-auto lg:max-w-none"
+              width={400}
+              height={400}
+              className="rounded-2xl w-[70%] max-w-md mx-auto lg:max-w-none"
             />
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* Features Section */}
-      <section className="bg-white py-16 sm:py-24 px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl sm:text-4xl font-semibold text-center text-gray-900 mb-12">
+      <section className="bg-white py-20 sm:py-32 px-4 sm:px-6 lg:px-8">
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-3xl sm:text-4xl lg:text-5xl font-bold text-center text-gray-900 mb-16"
+        >
           Why Choose CineGen?
-        </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
-          {[
-            {
-              title: "Effortless Video Creation",
-              desc: "Produce short videos with a streamlined, user-friendly workflow.",
-            },
-            {
-              title: "Scalable & Reliable",
-              desc: "Leverage robust cloud infrastructure to meet your growing needs.",
-            },
-            {
-              title: "Transparent Pricing",
-              desc: "Clear, flexible plans with no surprises—upgrade anytime.",
-            },
-          ].map((feature, idx) => (
-            <Card
+        </motion.h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+          {whyCineGen?.map((feature, idx) => (
+            <motion.div
               key={idx}
-              className="rounded-lg border border-gray-100 shadow-sm hover:shadow-lg transition-shadow"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: idx * 0.2 }}
             >
-              <CardContent className="p-6">
-                <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-3">
-                  {feature.title}
-                </h3>
-                <p className="text-gray-500 leading-relaxed">{feature.desc}</p>
-              </CardContent>
-            </Card>
+              <Card className="rounded-2xl border border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300">
+                <CardContent className="p-8">
+                  <div className="text-4xl mb-4">{feature.icon}</div>
+                  <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-3">
+                    {feature.title}
+                  </h3>
+                  <p className="text-gray-600 leading-relaxed">
+                    {feature.desc}
+                  </p>
+                </CardContent>
+              </Card>
+            </motion.div>
           ))}
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="bg-blue-50 py-16 sm:py-20 px-4 sm:px-6 lg:px-8 text-center">
-        <h3 className="text-2xl sm:text-3xl font-semibold text-gray-900 mb-6">
-          Ready to create your first video?
-        </h3>
-        <Button
-          size="large"
-          className="bg-blue-600 text-white font-semibold rounded-md px-6 py-2 hover:bg-blue-700 transition-colors"
-          onClick={() => router.push("/api/auth/signin")}
+      <section className="bg-gradient-to-r from-blue-50 to-indigo-50 py-20 sm:py-28 px-4 sm:px-6 lg:px-8 text-center">
+        <motion.h3
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-3xl sm:text-4xl font-bold text-gray-900 mb-8"
         >
-          Start Creating
-        </Button>
+          Ready to create your masterpiece?
+        </motion.h3>
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6 }}
+        >
+          <button
+            className="bg-blue-600 text-white font-semibold rounded-full px-10 py-4 hover:bg-blue-700 hover:shadow-lg transition-all duration-300"
+            onClick={() => router.push("/api/auth/signin")}
+          >
+            Start Creating Now
+          </button>
+        </motion.div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-white border-t border-gray-100 text-gray-500 text-center py-6">
-        <p>© {new Date().getFullYear()} CineGen. All rights reserved.</p>
+      <footer className="bg-gray-900 text-gray-300 py-6">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col  justify-center items-center">
+          <p>© {new Date().getFullYear()} CineGen. All rights reserved.</p>
+          <p className="text-xs">Developed by Kuldeep Gaud</p>
+        </div>
       </footer>
     </main>
   );

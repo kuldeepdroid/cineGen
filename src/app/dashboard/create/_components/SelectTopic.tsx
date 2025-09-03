@@ -2,7 +2,11 @@
 import { MenuItem, TextareaAutosize, TextField } from "@mui/material";
 import React, { useState } from "react";
 
-const SelectTopic = () => {
+const SelectTopic = ({
+  onUserSelect,
+}: {
+  onUserSelect: (a: string, b: string) => void;
+}) => {
   const [selectedOption, setSelectedOption] = useState<string>("");
   const options = [
     "Custom Prompt",
@@ -24,7 +28,11 @@ const SelectTopic = () => {
         <TextField
           id="content-type"
           name="content-type"
-          onChange={(e) => setSelectedOption(e.target.value)}
+          onChange={(e) => {
+            setSelectedOption(e.target.value);
+            e.target.value !== "Custon Promt" &&
+              onUserSelect("topic", e.target.value);
+          }}
           select
           label="Content Type"
           className="w-full"
@@ -39,8 +47,9 @@ const SelectTopic = () => {
           <TextareaAutosize
             id="custom-prompt"
             name="custom-prompt"
+            onChange={(e) => onUserSelect("topic", e.target.value)}
             placeholder="Enter your prompt"
-            className="w-full border-2 p-2 border-gray-300"
+            className="w-full border-2 p-3 border-gray-300"
           />
         )}
       </div>
