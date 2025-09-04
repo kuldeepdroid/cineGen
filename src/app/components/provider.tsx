@@ -3,7 +3,7 @@ import { useUser } from "@clerk/nextjs";
 import { useEffect } from "react";
 import toast from "react-hot-toast";
 
-const Provider = ({ children }: any) => {
+const Provider = ({ children }: Readonly<{ children: React.ReactNode }>) => {
   const { user } = useUser();
 
   const isNewUser = async () => {
@@ -21,8 +21,8 @@ const Provider = ({ children }: any) => {
   };
 
   useEffect(() => {
-    user && isNewUser();
-  }, [user]);
+    if (user) isNewUser();
+  }, [user, isNewUser]);
   return <>{children}</>;
 };
 

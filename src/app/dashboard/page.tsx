@@ -4,8 +4,8 @@ import React, { useState } from "react";
 import { EmptyState } from "../components/EmptyState";
 import Link from "next/link";
 
-const page = () => {
-  const [videoList, setVideoList] = useState([]);
+const Page = () => {
+  const [videoList] = useState([]);
   return (
     <>
       <div className="flex justify-between items-center ">
@@ -27,4 +27,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

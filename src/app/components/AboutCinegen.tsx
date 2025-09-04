@@ -2,7 +2,7 @@
 "use client";
 
 import { Box, Typography, Stack } from "@mui/material";
-import { Movie, FlashOn, Security, Palette } from "@mui/icons-material";
+import { Movie, FlashOn, Security } from "@mui/icons-material";
 
 export default function AboutCinegen() {
   const features = [

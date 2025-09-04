@@ -10,11 +10,11 @@ import {
   useUser,
 } from "@clerk/nextjs";
 
-import { Avatar, LinearProgress } from "@mui/material";
+import { LinearProgress } from "@mui/material";
 
 const Header = () => {
   const router = useRouter();
-  const { user, isSignedIn, isLoaded } = useUser();
+  const { isSignedIn, isLoaded } = useUser();
   const [isWaiting, setIsWaiting] = useState(false);
 
   useEffect(() => {
@@ -44,7 +44,6 @@ const Header = () => {
               <SignOutButton />
             </div>
           ) : (
-
             <div
               onClick={() => {
                 setIsWaiting(true);

@@ -30,7 +30,7 @@ const SelectTopic = ({
           name="content-type"
           onChange={(e) => {
             setSelectedOption(e.target.value);
-            e.target.value !== "Custon Promt" &&
+            if (e.target.value !== "Custon Promt")
               onUserSelect("topic", e.target.value);
           }}
           select

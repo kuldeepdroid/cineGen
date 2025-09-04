@@ -2,7 +2,7 @@
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import heroImg from "@/public/cineGen.png";
-import { Button, Card, CardContent } from "@mui/material";
+import { Card, CardContent } from "@mui/material";
 import { motion } from "framer-motion";
 
 export default function LandingPage() {

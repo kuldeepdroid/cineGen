@@ -1,12 +1,11 @@
 "use client";
-import { CreateNew } from "@/app/components/CreateNew";
 import React, { useState } from "react";
 import SelectTopic from "./_components/SelectTopic";
 import SelectStyle from "./_components/SelectStyle";
 import SelectDuration from "./_components/SelectDuration";
 import axios from "axios";
 
-const page = () => {
+const Page = () => {
   const [formData, setFormData] = useState<{
     topic?: string;
     style?: string;
@@ -51,4 +50,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

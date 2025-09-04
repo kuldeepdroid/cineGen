@@ -1,20 +1,17 @@
 "use client";
 import {
-
-  AccountCircle,
   AccountCircleOutlined,
   AddOutlined,
-  Dashboard,
   DashboardOutlined,
   TrendingUpOutlined,
 } from "@mui/icons-material";
 import Link from "next/link";
-import { usePathname, useSearchParams } from "next/navigation";
+import { usePathname } from "next/navigation";
 import React from "react";
 
 const SideNav = () => {
   const pathname = usePathname();
-  
+
   const menuOptions = [
     {
       name: "Dashboard",
@@ -37,7 +34,7 @@ const SideNav = () => {
       icon: <AccountCircleOutlined />,
     },
   ];
-  
+
   return (
     <div className="w-64 flex-col h-screen shadow-md flex gap-3 p-5">
       {menuOptions?.map((option, idx) => (

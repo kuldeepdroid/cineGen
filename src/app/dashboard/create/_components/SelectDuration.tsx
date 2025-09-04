@@ -7,7 +7,7 @@ const SelectDuration = ({
 }: {
   onUserSelect: (a: string, b: string) => void;
 }) => {
-  const [selectDiration, setSelectDuration] = useState("");
+  const [, setSelectDuration] = useState("");
   return (
     <div>
       <h2 className="font-bold text-2xl mt-5 text-secondary">Duration</h2>

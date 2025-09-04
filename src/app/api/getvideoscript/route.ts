@@ -8,7 +8,9 @@ export async function POST(req: Request) {
 
     const result = await chatSession(prompt);
 
-    return NextResponse.json({ result: JSON.parse(result as any) });
+    return NextResponse.json({
+      result: JSON.parse(result as unknown as string),
+    });
   } catch (e) {
     return NextResponse.json({ error: e });
   }

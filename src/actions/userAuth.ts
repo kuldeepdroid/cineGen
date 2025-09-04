@@ -27,6 +27,6 @@ export const registerUser = async (req: ReqBody) => {
       return { message: "Failed to create user" };
     }
   } catch (e) {
-    return { message: "Some error occurred" };
+    return { message: "Some error occurred: ", e };
   }
 };
