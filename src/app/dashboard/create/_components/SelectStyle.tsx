@@ -9,24 +9,34 @@ const SelectStyle = ({
   const [selectedOption, setSelectedOption] = useState("");
   const styleOption = [
     {
+      label: "Realistic",
       name: "Realistic",
       image: "/realistic.jpg",
     },
     {
+      label: "Cartoon",
       name: "Cartoon",
       image: "/cartoon.jpg",
     },
     {
+      label: "Sketch",
       name: "Comic",
       image: "/comic.jpg",
     },
     {
+      label: "WaterColor",
       name: "WaterColor",
       image: "/watercolor.jpg",
     },
     {
+      label: "GTA",
       name: "GTA",
       image: "/gta.jpg",
+    },
+    {
+      label: "Storytelling",
+      name: "AI Storytelling Video",
+      image: "/storytelling.webp",
     },
   ];
   return (
@@ -53,7 +63,7 @@ const SelectStyle = ({
               width={100}
             />
             <p className="absolute p-1 bg-black bottom-0 w-full text-white text-center rounded-b-lg">
-              {item.name}
+              {item.label}
             </p>
           </div>
         ))}
