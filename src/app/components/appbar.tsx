@@ -11,6 +11,8 @@ import {
 } from "@clerk/nextjs";
 
 import { LinearProgress } from "@mui/material";
+import ResponsiveDrawer from "../dashboard/_components/ResponsiveDrawer";
+import SideNav from "../dashboard/_components/SideNav";
 
 const Header = () => {
   const router = useRouter();
@@ -23,8 +25,11 @@ const Header = () => {
 
   return (
     <>
-      <div className=" p-2 shadow-lg bg-zinc-300 h-full items-center w-full flex justify-between">
-        <div>
+      <div className="z-50 p-2 shadow-lg bg-zinc-300 h-full items-center w-full flex justify-between">
+        <div className="flex justify-between">
+          <ResponsiveDrawer>
+            <SideNav />
+          </ResponsiveDrawer>
           <Image
             onClick={() => router.push("/")}
             src={logoImage}

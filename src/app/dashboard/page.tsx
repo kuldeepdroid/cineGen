@@ -3,12 +3,10 @@ import { Button } from "@mui/material";
 import React, { useState } from "react";
 import { EmptyState } from "../components/EmptyState";
 import Link from "next/link";
-import ResponsiveDrawer from "./_components/ResponsiveDrawer";
 
 const Page = () => {
   const [videoList] = useState([]);
-  console.log("width", window.screen.width);
-  window.screen.width;
+
   return (
     <>
       <div className="flex justify-between items-center ">

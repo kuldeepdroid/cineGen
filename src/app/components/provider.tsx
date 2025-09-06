@@ -22,7 +22,8 @@ const Provider = ({ children }: Readonly<{ children: React.ReactNode }>) => {
 
   useEffect(() => {
     if (user) isNewUser();
-  }, [user, isNewUser]);
+  }, [user]);
+
   return <>{children}</>;
 };
 

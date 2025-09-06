@@ -3,36 +3,51 @@ import { GoogleGenAI } from "@google/genai";
 const ai = new GoogleGenAI({
   apiKey: process.env.NEXT_PUBLIC_GOOGLE_API_KEY,
 });
+
 const config = {
   responseMimeType: "application/json",
-  responseModalities: ["IMAGE", "TEXT"],
 };
-const model = "gemini-2.5-flash-image-preview";
+
+const model = "gemini-1.5-flash";
 
 export const chatSession = async (prompt: string) => {
   const contents = [
     {
       role: "user",
-      parts: [
-        {
-          text: `${prompt}`,
-        },
-      ],
+      parts: [{ text: prompt }],
     },
   ];
-  const response = await ai.models.generateContentStream({
-    model,
-    config,
-    contents,
-  });
-  for await (const chunk of response) {
-    if (
-      !chunk.candidates ||
-      !chunk.candidates[0].content ||
-      !chunk.candidates[0].content.parts
-    ) {
-      continue;
+
+  try {
+    const stream = await ai.models.generateContentStream({
+      model,
+      config,
+      contents,
+    });
+
+    let output = "";
+
+    for await (const event of stream) {
+      event.candidates?.forEach((candidate) => {
+        candidate.content?.parts?.forEach((part) => {
+          if (part.text) {
+            output += part.text;
+          }
+        });
+      });
     }
-    console.log(chunk.text);
+
+    if (config.responseMimeType === "application/json") {
+      try {
+        return JSON.parse(output);
+      } catch {
+        return { raw: output, error: "Failed to parse JSON" };
+      }
+    }
+
+    return output;
+  } catch (e) {
+    console.error("AI Error:", e);
+    throw e;
   }
 };

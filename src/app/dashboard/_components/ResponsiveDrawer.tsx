@@ -12,16 +12,11 @@ export default function ResponsiveDrawer({
   const isMobile = useMediaQuery("(max-width:768px)");
   const [open, setOpen] = useState(false);
 
-  const drawerWidth = 240;
-
   return (
     <>
       {/* Mobile Toggle Button */}
       {isMobile && (
-        <IconButton
-          onClick={() => setOpen(true)}
-          sx={{ position: "absolute", top: 16, left: 16, zIndex: 1300 }}
-        >
+        <IconButton onClick={() => setOpen(true)}>
           <Menu />
         </IconButton>
       )}
@@ -34,7 +29,6 @@ export default function ResponsiveDrawer({
           onClose={() => setOpen(false)}
           sx={{
             [`& .MuiDrawer-paper`]: {
-              width: drawerWidth,
               boxSizing: "border-box",
             },
           }}
@@ -46,15 +40,14 @@ export default function ResponsiveDrawer({
       {/* Desktop Permanent Drawer */}
       {!isMobile && (
         <Drawer
+          className="!-z-0"
           variant="permanent"
           sx={{
-            width: drawerWidth,
             flexShrink: 0,
             [`& .MuiDrawer-paper`]: {
-              width: drawerWidth,
               boxSizing: "border-box",
-              height: "calc(100% - 64px)", // below header
-              marginTop: "64px", // same as header height
+              height: "calc(100% - 64px)",
+              marginTop: "62px",
             },
           }}
         >

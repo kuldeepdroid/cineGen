@@ -19,7 +19,7 @@ const SelectStyle = ({
       image: "/cartoon.jpg",
     },
     {
-      label: "Sketch",
+      label: "Comic",
       name: "Comic",
       image: "/comic.jpg",
     },
@@ -34,9 +34,9 @@ const SelectStyle = ({
       image: "/gta.jpg",
     },
     {
-      label: "Storytelling",
-      name: "AI Storytelling Video",
-      image: "/storytelling.webp",
+      label: "Sketch",
+      name: "Sketch",
+      image: "/sketch.jpg",
     },
   ];
   return (

@@ -4,7 +4,7 @@ import React from "react";
 
 const Page = () => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 justify-center items-center p-6">
+    <div className="grid grid-cols-1 md:grid-cols-2 justify-center h-screen bg-zinc-200 items-center p-6">
       <div className="hidden md:flex justify-center">
         <AboutCinegen />
       </div>
